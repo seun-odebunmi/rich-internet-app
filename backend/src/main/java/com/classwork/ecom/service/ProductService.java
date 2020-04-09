@@ -32,11 +32,11 @@ public class ProductService {
 
     public Page<Product> getProducts(Pageable pageable, Optional<String> name, Optional<Double> price) {
         if (name.isPresent() && price.isPresent()) {
-            return productRepository.findByNameAndPrice(name.get(), price.get(), pageable);
+            return productRepository.findByNameContainingAndPriceEquals(name.get(), price.get(), pageable);
         } else if (name.isPresent()) {
             return productRepository.findByNameContaining(name.get(), pageable);
         } else if (price.isPresent()) {
-            return productRepository.findByPriceContaining(price.get(), pageable);
+            return productRepository.findByPriceEquals(price.get(), pageable);
         } else {
             return productRepository.findAll(pageable);
         }

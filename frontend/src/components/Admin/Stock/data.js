@@ -10,14 +10,17 @@ export const columns = [
   {
     Header: 'Quantity',
     accessor: 'quantity',
+    disableFilters: true,
   },
   {
     Header: 'Description',
     accessor: 'description',
+    disableFilters: true,
   },
   {
     Header: 'Actions',
     accessor: 'actions',
     disableSortBy: true,
+    disableFilters: true,
   },
 ];
