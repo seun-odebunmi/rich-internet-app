@@ -1,5 +1,6 @@
 package com.classwork.ecom.entity;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @Entity
+@ApiModel(description = "User Entity attributes and methods")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

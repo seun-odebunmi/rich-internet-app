@@ -30,8 +30,16 @@ public class UserService {
         }
     }
 
-    public Page<User> getUsers(Pageable pageable) {
-        return userRepository.findAll(pageable);
+    public Page<User> getUsers(Pageable pageable, Optional<String> firstName, Optional<String> lastName) {
+        if (firstName.isPresent() && lastName.isPresent()) {
+            return userRepository.findByFirstNameContainingAndLastNameContaining(firstName.get(), lastName.get(), pageable);
+        } else if (firstName.isPresent()) {
+            return userRepository.findByFirstNameContaining(firstName.get(), pageable);
+        } else if (lastName.isPresent()) {
+            return userRepository.findByLastNameContaining(lastName.get(), pageable);
+        } else {
+            return userRepository.findAll(pageable);
+        }
     }
 
     public User getUserById(long id) {

@@ -1,5 +1,6 @@
 package com.classwork.ecom.entity;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import javax.validation.constraints.Min;
 @Getter
 @Setter
 @Entity
+@ApiModel(description = "OrderItem Entity attributes and methods")
 public class OrderItem {
 
     @Id

@@ -1,12 +1,14 @@
 package com.classwork.ecom.repository;
 
 import com.classwork.ecom.entity.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
 public interface UserRepository extends JpaRepository<User, Long> {
-    List<User> findByFirstName(String firstName);
+    Page<User> findByFirstNameContaining(String firstName, Pageable pageable);
 
-    List<User> findByLastName(String lastName);
+    Page<User> findByLastNameContaining(String lastName, Pageable pageable);
+
+    Page<User> findByFirstNameContainingAndLastNameContaining(String firstName, String lastName, Pageable pageable);
 }

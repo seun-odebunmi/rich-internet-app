@@ -1,5 +1,6 @@
 package com.classwork.ecom.entity;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@ApiModel(description = "Order Entity attributes and methods")
 public class Orders {
 
     @Id

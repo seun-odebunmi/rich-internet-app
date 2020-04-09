@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Getter
 @Setter
-@ApiModel(description = "Product information")
+@ApiModel(description = "Product Entity attributes and methods")
 public class Product {
 
     @Id

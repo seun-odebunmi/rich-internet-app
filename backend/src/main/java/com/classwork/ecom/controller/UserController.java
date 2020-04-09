@@ -12,6 +12,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -40,8 +41,8 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public Page<User> getUsers(Pageable pageable) {
-        return userService.getUsers(pageable);
+    public Page<User> getUsers(Pageable pageable, @RequestParam Optional<String> firstName, @RequestParam Optional<String> lastName) {
+        return userService.getUsers(pageable, firstName, lastName);
     }
 
     @GetMapping("/{userId}")

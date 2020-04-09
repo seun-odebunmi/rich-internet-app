@@ -1,5 +1,6 @@
 package com.classwork.ecom.entity;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 @Entity
 @Setter
 @Getter
+@ApiModel(description = "Review Entity attributes and methods")
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
