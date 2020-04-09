@@ -7,7 +7,13 @@ import Table from './table';
 import PagingInfo from './pagingInfo';
 import Pagination from './pagination';
 
-const Datatable = ({ columns, data, fetchData, pageCount: controlledPageCount }) => {
+const Datatable = ({ columns, data, pageInitialState, fetchData, pageCount: ctrldPageCount }) => {
+  const defaultColumn = React.useMemo(
+    () => ({
+      Filter: Search,
+    }),
+    []
+  );
   const {
     getTableProps,
     getTableBodyProps,
@@ -27,11 +33,12 @@ const Datatable = ({ columns, data, fetchData, pageCount: controlledPageCount })
     {
       columns,
       data,
-      initialState: { pageIndex: 0, sortBy: [{ id: 'name', desc: false }] },
+      defaultColumn,
+      initialState: pageInitialState,
       manualFilters: true,
       manualSortBy: true,
       manualPagination: true,
-      pageCount: controlledPageCount,
+      pageCount: ctrldPageCount,
     },
     useFilters,
     useSortBy,
@@ -48,9 +55,6 @@ const Datatable = ({ columns, data, fetchData, pageCount: controlledPageCount })
         <div className="row">
           <div className="col-sm-12 col-md-6">
             <PageSizeControl pageSize={pageSize} setPageSize={setPageSize} />
-          </div>
-          <div className="col-sm-12 col-md-6">
-            <Search />
           </div>
         </div>
         <div className="row">

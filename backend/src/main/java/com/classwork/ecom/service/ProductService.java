@@ -30,9 +30,16 @@ public class ProductService {
         }
     }
 
-    public Page<Product> getProducts(Pageable pageable) {
-        System.out.println(pageable);
-        return productRepository.findAll(pageable);
+    public Page<Product> getProducts(Pageable pageable, Optional<String> name, Optional<Double> price) {
+        if (name.isPresent() && price.isPresent()) {
+            return productRepository.findByNameAndPrice(name.get(), price.get(), pageable);
+        } else if (name.isPresent()) {
+            return productRepository.findByNameContaining(name.get(), pageable);
+        } else if (price.isPresent()) {
+            return productRepository.findByPriceContaining(price.get(), pageable);
+        } else {
+            return productRepository.findAll(pageable);
+        }
     }
 
     public Product getProductById(long id) {

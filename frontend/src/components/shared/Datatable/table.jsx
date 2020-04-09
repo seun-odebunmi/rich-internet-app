@@ -7,13 +7,12 @@ const Table = ({ getTableProps, headerGroups, getTableBodyProps, prepareRow, pag
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
-              <th
-                {...column.getHeaderProps(column.getSortByToggleProps())}
-                className={
-                  column.isSorted ? (column.isSortedDesc ? 'sorting_desc' : 'sorting_asc') : ''
-                }
-              >
-                {column.render('Header')}
+              <th {...column.getHeaderProps()}>
+                <div {...column.getSortByToggleProps()}>
+                  {column.render('Header')}
+                  {column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''}
+                </div>
+                <div>{column.canFilter ? column.render('Filter') : null}</div>
               </th>
             ))}
           </tr>

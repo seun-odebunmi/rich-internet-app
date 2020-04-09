@@ -18,7 +18,7 @@ public class ProductUtil {
         Faker faker = new Faker(new Random(index));
         Product product = new Product();
         product.setName(faker.commerce().productName());
-        product.setPrice(faker.number().randomDouble(0, 5, 99999));
+        product.setPrice(faker.number().randomDouble(2, 1, 999999));
         product.setDescription(faker.lorem().sentence());
         product.setQuantity(faker.number().randomDigitNotZero());
 

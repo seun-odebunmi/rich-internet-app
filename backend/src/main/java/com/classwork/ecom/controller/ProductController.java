@@ -12,6 +12,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/product")
@@ -40,8 +41,8 @@ public class ProductController {
     }
 
     @GetMapping("/")
-    public Page<Product> getProducts(Pageable pageable) {
-        return productService.getProducts(pageable);
+    public Page<Product> getProducts(Pageable pageable, @RequestParam Optional<String> name, @RequestParam Optional<Double> price) {
+        return productService.getProducts(pageable, name, price);
     }
 
     @GetMapping("/{productId}")
