@@ -1,5 +1,6 @@
 package com.classwork.ecom.configuration;
 
+import com.classwork.ecom.EcommerceApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
@@ -15,7 +16,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("com.classwork.ecom"))
                 .paths(PathSelectors.any())
                 .build();
     }

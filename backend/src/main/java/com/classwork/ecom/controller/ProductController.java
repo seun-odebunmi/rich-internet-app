@@ -21,14 +21,14 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    @PostMapping("/create")
+    @PostMapping("/")
     public ResponseEntity createProduct(@Valid @RequestBody Product newProduct) {
         Product product = productService.createProduct(newProduct);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(product.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
 
-    @PutMapping("/update")
+    @PutMapping("/")
     public ResponseEntity updateProduct(@Valid @RequestBody Product newProduct) {
         if (newProduct.getId() != null) {
             productService.updateProduct(newProduct);
@@ -50,12 +50,12 @@ public class ProductController {
         return productService.getProductById(productId);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/")
     public void deleteProducts() {
         productService.deleteProducts();
     }
 
-    @DeleteMapping("/delete/{productId}")
+    @DeleteMapping("/{productId}")
     public void deleteProductById(@PathVariable int productId) {
         productService.deleteProductById(productId);
     }

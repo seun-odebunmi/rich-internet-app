@@ -21,14 +21,14 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/create")
+    @PostMapping("/")
     public ResponseEntity createUser(@Valid @RequestBody User newUser) {
         User user = userService.createUser(newUser);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(user.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
 
-    @PutMapping("/update")
+    @PutMapping("/")
     public ResponseEntity updateUser(@Valid @RequestBody User newUser) {
         if (newUser.getId() != null) {
             userService.updateUser(newUser);
@@ -50,12 +50,12 @@ public class UserController {
         return userService.getUserById(userId);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/")
     public void deleteUsers() {
         userService.deleteUsers();
     }
 
-    @DeleteMapping("/delete/{userId}")
+    @DeleteMapping("/{userId}")
     public void deleteUserById(@PathVariable int userId) {
         userService.deleteUserById(userId);
     }
